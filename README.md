@@ -77,7 +77,7 @@ Now you are ready to make your first VPN on RPi.
 
 <h3>Get A Dynamic DNS Hostname</h3>
 
-There are several servives for it. I use [No-IP](https://www.noip.com/). You can make up to three free hostnames. Just remember that you have to extend your hostname every month or it would expire.  
+There are several services for it. I use [No-IP](https://www.noip.com/). You can make up to three free hostnames. Just remember that you have to extend your hostname every month or it would expire.  
 A typical format for a hostname is: name.hpoto.org. Write it down somewhere. You are gonna need it.  
 
 <h3>Download And Install PIVPN</h3>
