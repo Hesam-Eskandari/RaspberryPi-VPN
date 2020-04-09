@@ -1,7 +1,7 @@
 # RaspberryPi-VPN
 <h2>Build Your Own Virtual Private Network With A Raspberry Pi 3</h2>
 
-<h3>Reasons to build a VPN if you are large in time and short in money</h3>
+<h3>Reasons to build a VPN if you are long in time and short in money</h3>
 
 - You are tired of paying for VPN
 - You are connected to a public network and you want to make your connection secure (I'm not sure how secure this connection could get)
