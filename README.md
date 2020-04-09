@@ -55,19 +55,26 @@ Write this command to open the **dhcpcd.conf** file.
 Now, you need to uncomment this part if you are using **eth0** connection. We recommend you not to use wifi to connect your Raspberry Pi to internet.
 
 ```   
+interface eth0
+static ip_address=<IP>/24
+#static ip6_address=fd51:42f8:caae:d92e::ff/64
+static routers=<GW>
+static domain_name_servers=<GW> 8.8.8.8 fd51:42f8:caae:d92e::1
+
 profile static_eth0
 static ip_address=<IP>/24
 static routers= <GW>
 static domain_name_servers= <GW>
 ```
 
-Where <IP> is the IP address you saved before and <GW> is in fact the Gateway or the IP to access your modem (normally 192.168.0.1)  
+Where \<IP> is the IP address you saved before and \<GW> is in fact the Gateway or the IP to access your modem (normally 192.168.0.1)  
 Make sure to put correct information. Reboot your RPi. Now you can disconnect your HTMI cable and connect to RPi with your computer.
 
 <h3> Connect To RPi Via SSH </h3>
 
+Raspberry Pi can be accessed remotely since you enabled SSH.   
 Download and install [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)   
-Open Putty put your RPi IP address. THe port should be 22. Connect to RPi.
+Open Putty put your RPi IP address. The port should be 22. Connect to RPi.
 
 It's time to change your RPi password and choose a stronger one. The command below will let you change the password.
 
@@ -78,15 +85,80 @@ Now you are ready to make your first VPN on RPi.
 <h3>Get A Dynamic DNS Hostname</h3>
 
 There are several services for it. I use [No-IP](https://www.noip.com/). You can make up to three free hostnames. Just remember that you have to extend your hostname every month or it would expire.  
-A typical format for a hostname is: name.hpoto.org. Write it down somewhere. You are gonna need it.  
+A typical format for a hostname is: name.hopto.org. Write it down somewhere. You are gonna need it.  
 
-<h3>Download And Install PIVPN</h3>
+<h3>Download And Install PiVPN</h3>
 
-Open Putty and connect to your RPi. Write this command to install pivpn.
+- Update first with this command:   
 
+```
+    sudo apt-get update
+```
+
+- Go to your modem (probably 192.168.0.1) and make sure the static IP for Raspberry Pi is reserved (static) there   
+- Open Putty and connect to your RPi. Write this command to install pivpn.
+
+```
     curl -L https://install.pivpn.io | bash
+```
     
-Now we dig into the questions it asks. 
+Now we dig into the questions it asks.   
+- Are you Using DHCP Reservation on your Router/DHCP Server?   
+    Answer yes  
+- Choose local user: pi   
+- WireGuard or OpenVPN? OpenVPN  (select by pressing **Space**)  
+- UDP or TCP? I recommend UDP to be faster and a bit more loss  
+- Port? Choose a different port such as 1990 or 21021 (any 4 or 5 digit number is good)  
+- DNS Provider? Chose google  
+- Would you like to add a custom search domain? You don't need to  
+- Will clients use a Public IP or DNS Name to connect to your server? Put the hostname you made in No-IP (<name>.hopto.org)  
+- Enable features for OpenVPN 2.4 or higher? Recommended  
+- Desired size of your certificate: choose 256 if you don't want to access sensitive information :P   
+- Unattended upgrades: Yes  
+- Reboot now? If you want to use pivpn right away  
+
+<h4> Make Clients </h4>  
+
+- Make one client for each device you want to connect: `pivpn add`
+- Choose a name that lets you manage clients easier (Hesam.Phone, Sara.Ipad, etc)  
+- Choose not easy to guess passwords
+- You can see the connected clients by writing this command: `pivpn -c`
+- Just write `pivpn` to see all possible commands
+
+<h4>Get .ovpn Client Files</h4>
+
+There are several methods to access files and folders inside a Raspberry Pi. Since RPi has Python installed, we go with SimpleHTTPSever.  
+1. Write this command  
+
+    ```
+    cd ovpns  
+    python -m SimpleHTTPServer 8080  
+    ```
+    
+2. Open a web browser and write this in the address bar:  
+
+    ```
+    <RPi IP>:8080  
+    ```
+    The RPi IP is the static IP you set for your RPi. (Example: 192.168.1.15:8080)  
+    
+You should see the .ovpn client files you made. Click on them and they are now downloded to your PC   
+Once done hit **Ctrl + c** to stop RPi sharing the directory.  
+
+<h3> Connect To VPN </h3>  
+
+- Your Raspberry Pi is on and pivpn is running. Use the command `<pivpn -d>` just to make sure that you are done with the RPi and everything is in order with the VPN server you just made.  
+- You need to download and install OpenVPN on your PC, Laptop or Phone. You can find it in this [Link](https://openvpn.net/community-downloads/)  
+- Once it's installed, open **OpenVPN GUI** (go to the icon in the taskbar) and import the .ovpn file. Right click on the icon again and connect.  
+
+**Important note:** You may not be able to connect to VPN if you are connected to the same modem as the RPi is connected. To test if your VPN works, connect to a different modem or use hotspot on your phone connected to mobile data.  
+
+If you want to make a local network for gaming with your friends, this method should work.
+
+    
+    
+
+
 
 
 
