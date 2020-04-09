@@ -19,7 +19,7 @@ When we talk about Raspberry pi package, we normally talk about these items.
 
 There are several different operating systems you can install and use. See the full list of operating systems [here](https://www.raspberrypi.org/downloads/). For the Simplicity of process for us and for the RPi's CPU we recommand you to download these two items.  
 
-1. Raspberry Pi Imager (for [Windows](https://downloads.raspberrypi.org/imager/imager.exe), For [macOS](https://downloads.raspberrypi.org/imager/imager.dmg), For [Ubuntu](https://downloads.raspberrypi.org/imager/imager_amd64.deb))
+1. Raspberry Pi Imager (for [Windows](https://downloads.raspberrypi.org/imager/imager.exe), for [macOS](https://downloads.raspberrypi.org/imager/imager.dmg), for [Ubuntu](https://downloads.raspberrypi.org/imager/imager_amd64.deb))
 1. Rasbian Lite ([Download Link](https://www.raspberrypi.org/downloads/raspbian/))  
 
 Install the imager and install the Rasbian using the imager to the microsd card.
