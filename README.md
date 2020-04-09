@@ -6,8 +6,8 @@
 - You are tired of paying for VPN
 - You are connected to a public network and you want to make your connection secure (I'm not sure how secure this connection could get)
 - You need to connect to your home network remotely
-- Item 4 You are travelling to a filtered internet zone (There is no guarantee that this method would unbound your filtered connection)
-- Item 5 You already have a **Raspberry Pi 3** and you want to do something cool with it :)
+- You are travelling to a filtered internet zone (There is no guarantee that this method would unbound your filtered connection)
+- You already have a **Raspberry Pi 3** and you want to do something cool with it :)
 
 When we talk about Raspberry pi package, we normally talk about these items.
 1. Raspberry Pi board
